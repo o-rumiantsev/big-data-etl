@@ -13,15 +13,18 @@ const etl = async () => {
   console.log('Load finished');
 };
 
-http
-  .createServer(async (req, res) => {
-    if (req.url === process.env.TRIGGER_ETL) {
-      try {
-        await etl();
-        res.end('OK');
-      } catch (error) {
-        res.end(error.message);
-      }
-    }
-  })
-  .listen(process.env.PORT);
+const server = http.createServer((req, res) => {
+  if (req.url === process.env.TRIGGER_ETL) {
+      etl()
+        .then(() => {
+          res.end('OK');
+        })
+        .catch((error) => {
+          res.end(error.message);
+        });
+  }
+});
+
+server.listen(process.env.PORT, () => {
+  console.log('Server started');
+});
