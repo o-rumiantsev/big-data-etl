@@ -23,7 +23,10 @@ const server = http.createServer((req, res) => {
         .catch((error) => {
           res.end(error.message);
         });
+  } else {
+    res.end('OK');
   }
+
 });
 
 server.listen(config.port, () => {
