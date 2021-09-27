@@ -1,6 +1,7 @@
 'use strict';
 
 const http = require('http');
+const config = require('./config');
 const extract = require('./extract');
 const load = require('./load');
 
@@ -14,7 +15,7 @@ const etl = async () => {
 };
 
 const server = http.createServer((req, res) => {
-  if (req.url === process.env.TRIGGER_ETL) {
+  if (req.url === config.url.triggerETL) {
       etl()
         .then(() => {
           res.end('OK');
@@ -25,6 +26,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(process.env.PORT, () => {
+server.listen(config.port, () => {
   console.log('Server started');
 });

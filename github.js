@@ -2,11 +2,12 @@
 
 const { URL } = require('url');
 const axios = require('axios');
-const parseLinkHeader = require('parse-link-header')
+const parseLinkHeader = require('parse-link-header');
+const config = require('./config');
 
 const GITHUB_API_URL = 'https://api.github.com';
 
-const token = Buffer.from(`${process.env.GITHUB_USER}:${process.env.GITHUB_TOKEN}`).toString('base64');
+const token = Buffer.from(`${config.github.user}:${config.github.token}`).toString('base64');
 
 const iterate = (path) => {
   let nextURL = new URL(path, GITHUB_API_URL).href;
