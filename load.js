@@ -15,6 +15,18 @@ const load = async (events) => {
     client.linuxEvents.createMany({
       data: events.linux.map(event => ({ data: event, createdAt: event.created_at })),
     }),
+    client.openJDKEvents.createMany({
+      data: events.openjdk.map(event => ({ data: event, createdAt: event.created_at })),
+    }),
+    client.mockingBirdEvents.createMany({
+      data: events.mockingBird.map(event => ({ data: event, createdAt: event.created_at })),
+    }),
+    client.secretKnowledgeEvents.createMany({
+      data: events.secretKnowledge.map(event => ({ data: event, createdAt: event.created_at })),
+    }),
+    client.hexagonEvents.createMany({
+      data: events.hexagon.map(event => ({ data: event, createdAt: event.created_at })),
+    })
   ]);
 };
 

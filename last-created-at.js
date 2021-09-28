@@ -16,6 +16,7 @@ const getLastCreatedAt = async (type) => {
       }
     });
 
+  console.log(type, 'last created at', entry?.createdAt || null)
   return entry?.createdAt.toISOString();
 };
 
@@ -25,8 +26,16 @@ const getPrismaDelegateByType = type => {
       return client.nodeJsEvents;
     case 'orgs/github':
       return client.gitHubEvents;
+    case 'orgs/openjdk':
+      return client.openJDKEvents;
     case 'repos/torvalds/linux':
       return client.linuxEvents;
+    case 'repos/babysor/MockingBird':
+      return client.mockingBirdEvents;
+    case 'repos/trimstray/the-book-of-secret-knowledge':
+      return client.secretKnowledgeEvents;
+    case 'repos/Sairyss/domain-driven-hexagon':
+      return client.hexagonEvents;
   }
 }
 

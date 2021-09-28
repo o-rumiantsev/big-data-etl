@@ -13,12 +13,21 @@ const iterate = (path) => {
   let nextURL = new URL(path, GITHUB_API_URL).href;
 
   const next = async () => {
-    const result = await request(nextURL);
-    nextURL = result.link.next.url;
-    return {
-      done: result.link.next.url === result.link.last.url,
-      value: result.data,
-    };
+    try {
+      console.log('iterate', path)
+      const result = await request(nextURL);
+      nextURL = result.link.next.url;
+      return {
+        done: result.link.next.url === result.link.last.url,
+        value: result.data,
+      };
+    } catch (error) {
+      console.error(path, error);
+      return {
+        done: true,
+        value: [],
+      }
+    }
   };
 
   return {

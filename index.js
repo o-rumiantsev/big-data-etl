@@ -26,7 +26,6 @@ const server = http.createServer((req, res) => {
   } else {
     res.end('OK');
   }
-
 });
 
 server.listen(config.port, () => {

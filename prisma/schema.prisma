@@ -28,3 +28,27 @@ model LinuxEvents {
   data      Json
   createdAt DateTime
 }
+
+model OpenJDKEvents {
+  id        String      @id @db.Uuid    @default(uuid())
+  data      Json
+  createdAt DateTime
+}
+
+model MockingBirdEvents {
+  id        String      @id @db.Uuid    @default(uuid())
+  data      Json
+  createdAt DateTime
+}
+
+model SecretKnowledgeEvents {
+  id        String      @id @db.Uuid    @default(uuid())
+  data      Json
+  createdAt DateTime
+}
+
+model HexagonEvents {
+  id        String      @id @db.Uuid    @default(uuid())
+  data      Json
+  createdAt DateTime
+}

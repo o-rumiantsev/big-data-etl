@@ -4,15 +4,34 @@ const github = require('./github');
 const { getLastCreatedAt } = require('./last-created-at');
 
 const extract = async () => {
-  const [nodejsEvents, githubEvents, linuxEvents] = await Promise.all([
+  const [
+    nodejsEvents,
+    githubEvents,
+    openjdkEvents,
+  ] = await Promise.all([
     getNewEvents('orgs/nodejs'),
     getNewEvents('orgs/github'),
-    getNewEvents('repos/torvalds/linux')
+    getNewEvents('orgs/openjdk'),
+  ]);
+  const [
+    linuxEvents,
+    mockingBirdEvents,
+    secretKnowledgeEvents,
+    hexagonEvents,
+  ] = await Promise.all([
+    getNewEvents('repos/torvalds/linux'),
+    getNewEvents('repos/babysor/MockingBird'),
+    getNewEvents('repos/trimstray/the-book-of-secret-knowledge'),
+    getNewEvents('repos/Sairyss/domain-driven-hexagon'),
   ]);
   return {
     nodejs: nodejsEvents,
     github: githubEvents,
     linux: linuxEvents,
+    openjdk: openjdkEvents,
+    mockingBird: mockingBirdEvents,
+    secretKnowledge: secretKnowledgeEvents,
+    hexagon: hexagonEvents,
   }
 };
 
